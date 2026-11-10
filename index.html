@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#fff8f5" />
+  <title>CAKE STUDIO — sweet things happen here</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Cake Studio home"><span class="brand-mark">✿</span><span>cake<span class="brand-light">studio</span><small>sweet things happen here</small></span></a>
+      <nav class="main-nav" aria-label="Game modes">
+        <button class="nav-item active" data-mode="free">Free decorate</button>
+        <button class="nav-item" data-mode="orders">Customer orders <span class="nav-dot"></span></button>
+        <button class="nav-item" data-mode="challenge">Challenges</button>
+        <button class="nav-item" data-mode="gallery">My gallery</button>
+      </nav>
+      <div class="top-actions"><button class="studio-btn" id="studioBtn"><span>✦</span> Studio</button><div class="coin-pill"><span>🪙</span><b id="coinCount">240</b></div><button class="avatar" title="Your baker profile">M</button></div>
+    </header>
+
+    <main class="workspace">
+      <aside class="left-panel panel">
+        <div class="panel-heading"><div><span class="eyebrow" id="modeEyebrow">YOUR CREATIVE SPACE</span><h1 id="modeTitle">Make it lovely.</h1></div><button class="round-icon" id="resetBtn" title="Start a fresh cake">↻</button></div>
+        <p class="panel-intro" id="modeIntro">A little frosting, a lot of love. Your next masterpiece starts here.</p>
+        <div id="modeContent"></div>
+        <section class="control-section"><div class="section-title"><span>01</span><h2>Build your cake</h2></div>
+          <label class="field-label">Shape</label><div class="shape-grid" id="shapeGrid">
+            <button class="shape-choice selected" data-shape="round"><span class="shape-icon round-shape"></span><small>Round</small></button>
+            <button class="shape-choice" data-shape="square"><span class="shape-icon square-shape"></span><small>Square</small></button>
+            <button class="shape-choice" data-shape="heart"><span class="shape-icon heart-shape">♥</span><small>Heart</small></button>
+            <button class="shape-choice" data-shape="tiered"><span class="shape-icon tier-shape"><i></i><i></i></span><small>Tiered</small></button>
+          </div>
+          <div class="two-fields"><label class="select-wrap"><span>Size</span><select id="sizeSelect"><option value="small">Petite</option><option value="medium" selected>Classic</option><option value="large">Grande</option></select></label><label class="select-wrap"><span>Layers</span><select id="layerSelect"><option>1</option><option selected>2</option><option>3</option></select></label></div>
+          <label class="select-wrap flavor-select"><span>Flavor</span><select id="flavorSelect"><option value="vanilla">Vanilla bean</option><option value="chocolate">Chocolate fudge</option><option value="strawberry">Strawberry cloud</option><option value="red velvet">Red velvet</option><option value="lemon">Lemon sunshine</option></select></label>
+        </section>
+        <section class="control-section frosting-section"><div class="section-title"><span>02</span><h2>Frosting</h2></div>
+          <div class="frosting-types"><button class="frost-type selected" data-frost="smooth"><span>〰</span>Smooth</button><button class="frost-type" data-frost="whipped"><span>❋</span>Whipped</button><button class="frost-type" data-frost="textured"><span>▤</span>Texture</button></div>
+          <div class="color-head"><label class="field-label">Choose a shade</label><button class="mix-link" id="mixBtn">＋ Mix a color</button></div>
+          <div class="swatches" id="swatches"></div>
+          <div class="custom-color hidden" id="customColor"><input type="color" id="colorPicker" value="#f6a8bd"><span>Make your own shade</span><button id="applyColor">Use shade</button></div>
+        </section>
+      </aside>
+
+      <section class="stage-column">
+        <div class="stage-top"><div class="crumb"><span>MY STUDIO</span><b> / </b><strong id="stageModeLabel">Free decorate</strong></div><div class="stage-tools"><span class="autosave"><i></i> Saved just now</span><button class="icon-btn" id="undoBtn" title="Undo last addition">↶</button><button class="icon-btn" id="redoBtn" title="Redo">↷</button><button class="icon-btn" id="viewBtn" title="Reset camera">⌖</button></div></div>
+        <div class="cake-stage" id="cakeStage">
+          <div class="stage-glow"></div><div class="floating-label"><span class="sparkle">✦</span><span>YOUR CANVAS</span><span class="label-line"></span></div>
+          <div id="threeMount"></div>
+          <div class="stage-hint" id="stageHint"><span class="hint-cursor">✣</span> Tap the cake to decorate <i>·</i> Drag to look around</div>
+          <div class="zoom-controls"><button id="zoomIn" aria-label="Zoom in">＋</button><span>ZOOM</span><button id="zoomOut" aria-label="Zoom out">−</button></div>
+          <div class="selected-pop hidden" id="selectedPop"><span>Decoration selected</span><button id="rotateItem" title="Rotate">⟳</button><button id="smallerItem" title="Make smaller">−</button><button id="biggerItem" title="Make bigger">＋</button><button id="deleteItem" title="Remove">⌫</button></div>
+          <div class="toast" id="toast"></div>
+        </div>
+        <div class="bottom-dock"><div class="dock-title"><div><span class="eyebrow">PICK YOUR FINISHING TOUCH</span><strong>Decorations</strong></div><span class="item-count" id="itemCount">15 little delights</span></div><div class="decoration-list" id="decorationList"></div></div>
+      </section>
+
+      <aside class="right-panel panel"><div class="right-heading"><div><span class="eyebrow">THE TOOLBOX</span><h2>Tools of the trade</h2></div><span class="toolbox-icon">✧</span></div>
+        <div class="tool-list" id="toolList"></div>
+        <div class="tool-tip" id="toolTip"><span class="tip-icon">✦</span><div><b>Little tip</b><p>Choose a tool, then tap your cake to make magic.</p></div></div>
+        <div class="selection-card" id="selectionCard"><div class="selection-head"><span>ON YOUR CAKE</span><b id="placedCount">0</b></div><div class="selection-body"><div class="mini-cake">🎂</div><div><strong id="selectionName">A blank canvas</strong><small id="selectionSub">Ready for your first touch</small></div></div><button class="finish-btn" id="finishBtn">Finish & save <span>→</span></button><button class="submit-btn hidden" id="submitOrderBtn">Serve this cake <span>✧</span></button></div>
+        <button class="studio-customize" id="customizeStudio"><span>🏡</span><span><b>Make it your studio</b><small>Change your workspace look</small></span><span class="arrow">›</span></button>
+      </aside>
+    </main>
+    <div class="modal-backdrop hidden" id="modalBackdrop"><div class="modal" id="modalContent"></div></div>
+    <div class="mobile-nav"><button class="active" data-mobile="build">♡<small>Build</small></button><button data-mobile="frost">✿<small>Frost</small></button><button data-mobile="decorate">✧<small>Decorate</small></button><button data-mobile="tools">⚒<small>Tools</small></button></div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
